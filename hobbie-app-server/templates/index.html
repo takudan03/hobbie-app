@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FlaskApp</title>
+</head>
+
+<body>
+    <h1>Social Hobby List</h1>
+    <h2>New Entry</h2>
+
+    <form method="POST">
+        <label for="form-firstname">First Name: </label>
+        <input type="text" id="form-firstname" />
+
+        <label for="form-lastname">Last Name: </label>
+        <input type="text" id="form-lastname" />
+
+        <label for="form-hobbies">Hobbies: </label>
+        <input type="text" id="form-hobbies" />
+
+        <Button type="submit" id="form-submit">Submit</Button>
+    </form>
+
+    <h2>Existing Entries</h2>
+    <table>
+        <tr>
+            <th>EntryID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Hobbies</th>
+        </tr>
+        {% for entry in exitsingEntries %}
+        <tr>
+            <td>{{entry['_id']}}</td>
+            <td>{{entry['firstName']}}</td>
+            <td>{{entry['lastName']}}</td>
+            <td>{{entry['hobbies']}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+
+</html>

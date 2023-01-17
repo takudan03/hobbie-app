@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hobbie-app
+  labels:
+    app: hobbie-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: hobbie-app
+  template:
+    metadata:
+      labels:
+        app: hobbie-app
+    spec:
+      containers:
+        - name: hobbie-app
+          image: takudan03/hobbie-app
+          imagePullPolicy: IfNotPresent
+          ports:
+          - containerPort: 5000
+          env:
+          - name: MONGO_URI
+            valueFrom:
+              configMapKeyRef:
+                name: mongodb-configmap
+                key: database_url
+          - name: MONGO_INITDB_ROOT_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: mongodb-secret
+                key: mongo-root-username
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mongodb-secret
+                key: mongo-root-password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hobbie-app-service
+spec:
+  selector:
+    app: hobbie-app
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+      nodePort: 30500
