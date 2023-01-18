@@ -11,7 +11,7 @@ try:
     # app.config['MONGO_URI'] = os.getenv("MONGO_URI")
     # Create a connection using MongoClient. You can import MongoClient or use pymongo.MongoClient
     # iF NO AUTH USE
-    # client = MongoClient(app.config['MONGO_URI'])
+    # client = MongoClient("mongodb://localhost:27017")
 
     # If there is auth, you can specify these as env variables and use:
     client = MongoClient(host=os.getenv("MONGO_URI"), username=os.getenv("MONGO_INITDB_ROOT_USERNAME"), password=os.getenv("MONGO_INITDB_ROOT_PASSWORD"))
@@ -34,6 +34,7 @@ def hello():
         # create JSON object with info to post to DB
         newDbEntry = {'firstName': firstName,
                       'lastName': lastName, 'hobbies': hobies}
+        print(newDbEntry)
         try:
             result = db.myCollection.insert_one(newDbEntry)
             print(result)
@@ -49,4 +50,4 @@ def hello():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0", debug=True)
