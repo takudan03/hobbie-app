@@ -30,7 +30,7 @@ def hello():
         firstName = request.form.get("form-firstname")
         lastName = request.form.get("form-lastname")
         hobies = request.form.get("form-hobbies")
-
+ 
         # create JSON object with info to post to DB
         newDbEntry = {'firstName': firstName,
                       'lastName': lastName, 'hobbies': hobies}
@@ -38,12 +38,13 @@ def hello():
         try:
             result = db.myCollection.insert_one(newDbEntry)
             print(result)
-            exitsingEntries = db.myCollection.find()
+            existingEntries = db.myCollection.find()
         except:
             print("Error posting to DB")
         return render_template("index.html", existingEntries=existingEntries)
     try:
-        exitsingEntries = db.myCollection.find()
+        existingEntries = list(db.myCollection.find())
+        print(existingEntries)
     except:
         print("Error retrieving existing entries")
     return render_template("index.html", existingEntries=existingEntries)

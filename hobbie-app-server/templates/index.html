@@ -31,12 +31,12 @@
             <th>Last Name</th>
             <th>Hobbies</th>
         </tr>
-        {% for entry in exitsingEntries %}
+        {% for entry in existingEntries %}
         <tr>
-            <td>{{entry['_id']}}</td>
-            <td>{{entry['firstName']}}</td>
-            <td>{{entry['lastName']}}</td>
-            <td>{{entry['hobbies']}}</td>
+            <td>{{ entry['_id'] }}</td>
+            <td>{{ entry['firstName'] }}</td>
+            <td>{{ entry['lastName'] }}</td>
+            <td>{{ entry['hobbies'] }}</td>
         </tr>
         {% endfor %}
     </table>
