@@ -1,5 +1,9 @@
 
 
+
+
+Instructions to run app locally:
+
 -Remember to switch to your venv whenever you work on your project using the command:
 `source myproject/bin/activate`
 

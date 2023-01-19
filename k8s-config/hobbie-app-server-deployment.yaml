@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
         - name: hobbie-app
-          image: takudan03/hobbie-app
-          imagePullPolicy: IfNotPresent
+          image: takudan03/hobbie-app:latest
+          # imagePullPolicy: IfNotPresent
           ports:
           - containerPort: 5000
           env:
