@@ -4,7 +4,7 @@ pipeline{
     stages {
         stage('build'){
             steps{
-                echo "Building triggered by github poll.."
+                echo "Test Building triggered by github poll.."
             }
         }
         stage('Test'){
