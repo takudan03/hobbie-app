@@ -26,8 +26,10 @@ pipeline{
         stage('Deploy'){
             steps{
                 echo "Deploying app to artifact repository.."
-                docker.withRegistry( '', registryCredential ) {
-                    dockerImage.push()
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push()
+                    }
                 }
                 // Deployment to K8S cluster...
             }
