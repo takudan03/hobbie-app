@@ -7,7 +7,7 @@ pipeline{
     }
     
     tools {
-        'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'docker'
+        'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'my_docker_installation'
 //         docker 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
     }
 
