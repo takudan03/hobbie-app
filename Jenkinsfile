@@ -8,22 +8,16 @@ pipeline{
     
     tools {
         'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'my_docker_installation'
-//         docker 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
     }
 
     agent any
-//     agent {
-//         docker {
-//             image 'takudan03/hobbie-app'
-//         }
-//     }
 
     stages {
         stage('build'){
             steps{
                 echo "Building image from SC.."
                 script {
-                    dockerImage = docker.build registry
+                    dockerImage = docker.build("$env.registry", "./hobbie-app-server/"
                 }
             }
         }
