@@ -20,6 +20,7 @@ pipeline{
         stage('Test'){
             steps{
                 echo "Testing.."
+                sh "pip install pytest"
                 sh "pytest hobbie-app-server/tests/test_flask.py"
             }
         }
