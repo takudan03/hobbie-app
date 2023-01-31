@@ -6,27 +6,31 @@ pipeline{
         dockerImage = ''
     }
 
-    // agent any
-    agent {
-        docker {
-            image 'takudan03/hobbie-app'
-        }
-    }
+    agent any
+//     agent {
+//         docker {
+//             image 'takudan03/hobbie-app'
+//         }
+//     }
 
     stages {
         stage('build'){
             steps{
                 echo "Building image from SC.."
-                // script {
-                //     dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                // }
+                script {
+                    dockerImage = docker.build registry
+                }
             }
         }
+        
         stage('Test'){
             steps{
                 echo "Testing.."
-                sh "pip install pytest"
-                sh "pytest hobbie-app-server/tests/test_flask.py"
+                script{
+                    dockerImage.inside{
+                        sh 'pytest tests/test_flask.py'
+                    }
+                }
             }
         }
         stage('Deploy'){
