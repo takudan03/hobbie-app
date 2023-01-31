@@ -4,9 +4,11 @@ pipeline{
         registry = "takudan03/hobbie-app"
         registryCredential = 'takudan03'
         dockerImage = ''
-        tools {
-            'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'docker'
-        }
+    }
+    
+    tools {
+        'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'docker'
+//         docker 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
     }
 
     agent any
