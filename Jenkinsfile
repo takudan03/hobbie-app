@@ -6,7 +6,12 @@ pipeline{
         dockerImage = ''
     }
 
-    agent any
+    // agent any
+    agent {
+        docker {
+            image 'takudan03/hobbie-app'
+        }
+    }
 
     stages {
         stage('build'){
