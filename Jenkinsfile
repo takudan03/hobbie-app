@@ -12,9 +12,9 @@ pipeline{
         stage('build'){
             steps{
                 echo "Building image from SC.."
-                script {
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                }
+                // script {
+                //     dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                // }
             }
         }
         stage('Test'){
@@ -26,11 +26,11 @@ pipeline{
         stage('Deploy'){
             steps{
                 echo "Deploying app to artifact repository.."
-                script {
-                    docker.withRegistry( '', registryCredential ) {
-                        dockerImage.push()
-                    }
-                }
+                // script {
+                //     docker.withRegistry( '', registryCredential ) {
+                //         dockerImage.push()
+                //     }
+                // }
                 // Deployment to K8S cluster...
             }
         }
