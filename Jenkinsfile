@@ -18,7 +18,7 @@ pipeline{
                 echo "Building image from SC.."
                 dir('hobbie-app-server'){
                     script {
-                        docker.build("$env.registry").inside("-e PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin){
+                        docker.build("$env.registry").inside("-e PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"){
                             sh 'pwd'
                             sh 'whoami'
 //                         sh 'pytest tests/test_flask.py'
