@@ -27,7 +27,7 @@ pipeline{
         stage('Test'){
             agent {
                 docker{
-                    image: "$env.registry"
+                    image "$env.registry"
                 }
             }
             steps{
