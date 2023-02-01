@@ -36,7 +36,7 @@ pipeline{
                     dockerImage.withRun("-e PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"){c ->
                         sh 'pwd'
                         // The above shows that the odcker container is running in detached mode and we are still in the jenkins container. We can access the container ID using the c parameter
-                        sh "docker exec -it ${c.id} pytest tests/test_flask.py"
+                        sh "docker exec ${c.id} pytest tests/test_flask.py"
                     }
                 }
             }
