@@ -16,8 +16,9 @@ pipeline{
         stage('build'){
             steps{
                 echo "Building image from SC.."
+                dir('hobbie-app-server'){
                 script {
-                    docker.build("$env.registry", "./hobbie-app-server/").inside{
+                    docker.build("$env.registry").inside{
                         sh 'pwd'
                         sh 'whoami'
 //                         sh 'pytest tests/test_flask.py'
