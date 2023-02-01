@@ -16,6 +16,7 @@ pipeline{
         stage('build'){
             steps{
                 echo "Building image from SC.."
+                sh "echo $PATH"
                 dir('hobbie-app-server'){
                     script {
                         docker.build("$env.registry").inside("-e PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"){
