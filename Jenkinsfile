@@ -25,6 +25,11 @@ pipeline{
         }
         
         stage('Test'){
+            agent {
+                docker{
+                    image: "$env.registry"
+                }
+            }
             steps{
                 echo "Testing.."
                 script{
