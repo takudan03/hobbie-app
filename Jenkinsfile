@@ -34,7 +34,7 @@ pipeline{
                 echo "Testing.."
                 script{
                     docker.withTool('my_docker_installation'){
-                        dockerImage.inside {c ->
+                        dockerImage.inside {
                             sh 'pytest tests/test_flask.py'
                             sh "docker logs ${c.id}"
                         }
