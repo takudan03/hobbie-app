@@ -56,6 +56,7 @@ pipeline{
 
     post {
         always {
+            archiveArtifacts artifacts: 'test_results.log', fingerprint: true
             echo "The pipeline has completed"
         }
     }
