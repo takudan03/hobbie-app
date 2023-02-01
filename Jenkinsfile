@@ -19,7 +19,7 @@ pipeline{
                 sh "echo $PATH"
                 dir('hobbie-app-server'){
                     script {
-                        docker.build("$env.registry").inside("-e PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"){
+                        docker.build("$env.registry").withRun("-e PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"){c ->
                             sh 'pwd'
                             sh 'whoami'
 //                         sh 'pytest tests/test_flask.py'
