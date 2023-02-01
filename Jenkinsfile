@@ -17,11 +17,12 @@ pipeline{
             steps{
                 echo "Building image from SC.."
                 dir('hobbie-app-server'){
-                script {
-                    docker.build("$env.registry").inside{
-                        sh 'pwd'
-                        sh 'whoami'
+                    script {
+                        docker.build("$env.registry").inside{
+                            sh 'pwd'
+                            sh 'whoami'
 //                         sh 'pytest tests/test_flask.py'
+                        }
                     }
                 }
             }
