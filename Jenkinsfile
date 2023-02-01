@@ -18,7 +18,7 @@ pipeline{
                 echo "Building image from SC.."
                 script {
                     docker.withTool('my_docker_installation'){ 
-                        dockerImage = docker.build("$env.registry", "./hobbie-app-server/")
+                        docker.build("$env.registry", "./hobbie-app-server/")
                     }
                 }
             }
@@ -28,8 +28,9 @@ pipeline{
             steps{
                 echo "Testing.."
                 script{
-                    docker.withTool('my_docker_installation'){ 
-                        docker.image('takudan03/hobbie-app').inside{
+                    docker.withTool('my_docker_installation'){
+                        def myEnv = docker.build("$env.registry", "./hobbie-app-server/")
+                        myEnv.inside{
                             sh 'pytest tests/test_flask.py'
                         }
                     }
