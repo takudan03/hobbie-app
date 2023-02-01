@@ -26,9 +26,12 @@ pipeline{
             steps{
                 echo "Testing.."
                 script{
-                    dockerImage.inside{
+                    docker.image('takudan03/hobbie-app').inside{
                         sh 'pytest tests/test_flask.py'
                     }
+//                     dockerImage.inside{
+//                         sh 'pytest tests/test_flask.py'
+//                     }
                 }
             }
         }
