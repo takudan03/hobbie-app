@@ -17,7 +17,9 @@ pipeline{
             steps{
                 echo "Building image from SC.."
                 script {
-                    dockerImage = docker.build("$env.registry", "./hobbie-app-server/")
+                    docker.withTool('my_docker_installation'){ 
+                        dockerImage = docker.build("$env.registry", "./hobbie-app-server/")
+                    }
                 }
             }
         }
