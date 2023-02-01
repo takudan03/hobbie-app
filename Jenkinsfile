@@ -26,7 +26,7 @@ pipeline{
             steps{
                 echo "Testing.."
                 script{
-                    docker.withTool('my-docker-installation'){ 
+                    docker.withTool('my_docker_installation'){ 
                         docker.image('takudan03/hobbie-app').inside{
                             sh 'pytest tests/test_flask.py'
                         }
