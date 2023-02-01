@@ -19,6 +19,7 @@ pipeline{
                 script {
                     docker.build("$env.registry", "./hobbie-app-server/").inside{
                         sh 'pwd'
+                        sh 'whoami'
 //                         sh 'pytest tests/test_flask.py'
                     }
                 }
