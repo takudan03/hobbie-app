@@ -16,9 +16,10 @@ pipeline{
         stage('build'){
             steps{
                 echo "Building image from SC.."
+                def agentPath = "/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
                 dir('hobbie-app-server'){
                     script {
-                        docker.build("$env.registry").inside{
+                        docker.build("$env.registry").inside("-e PATH=${agentPath}"){
                             sh 'pwd'
                             sh 'whoami'
 //                         sh 'pytest tests/test_flask.py'
