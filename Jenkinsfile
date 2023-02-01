@@ -17,10 +17,8 @@ pipeline{
             steps{
                 echo "Building image from SC.."
                 script {
-                    docker.withTool('my_docker_installation'){ 
-                        env.dockerImage = docker.build("$env.registry", "./hobbie-app-server/").inside{
-                            sh 'pytest /tests/test_flask.py'
-                        }
+                    docker.build("$env.registry", "./hobbie-app-server/").inside{
+                        sh 'pytest /tests/test_flask.py'
                     }
                 }
             }
