@@ -29,7 +29,7 @@ pipeline{
                 echo "Testing.."
                 script{
                     docker.withTool('my_docker_installation'){
-                        docker.image("$env.registry").run {
+                        docker.image("$env.registry").run { c->
                             sh 'pytest tests/test_flask.py'
                             sh "docker logs ${c.id}"
                         }
