@@ -18,7 +18,7 @@ pipeline{
                 echo "Building image from SC.."
                 script {
                     docker.build("$env.registry", "./hobbie-app-server/").inside{
-                        sh 'pytest /tests/test_flask.py'
+                        sh 'pytest tests/test_flask.py'
                     }
                 }
             }
