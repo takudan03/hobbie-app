@@ -2,7 +2,7 @@ pipeline{
 
     environment {
         registry = "takudan03/hobbie-app"
-        registryCredential = 'jenkins-user-for-dockerhub-artifact-repository'
+        registryCredential = "jenkins-user-for-dockerhub-artifact-repository"
         dockerImage = ''
     }
     
@@ -41,7 +41,7 @@ pipeline{
                 
                 // Push new image to DockerHub
                 script {
-                    docker.withDockerRegistry('' , "${registryCredential}") {
+                    docker.withDockerRegistry([credentialsID: "jenkins-user-for-dockerhub-artifact-repository", url: "" ]) {
                         dockerImage.push()
                     }
                 }
