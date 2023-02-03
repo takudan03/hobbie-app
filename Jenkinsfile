@@ -40,7 +40,7 @@ pipeline{
                 
                 // Push new image to DockerHub
                 script {
-                    sh "docker login --username ${registryCredential_USR} --password ${registryCredential_USR}"
+                    sh "docker login --username $registryCredential_USR --password $registryCredential_PSW"
                     sh "docker push ${registry}"
                 }
                 // this is where you would implement some way to deployment to K8S cluster...
