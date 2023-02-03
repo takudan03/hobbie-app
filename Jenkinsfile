@@ -41,7 +41,7 @@ pipeline{
                 
                 // Push new image to DockerHub
                 script {
-                    docker.withDockerRegistry([ credentialsId: "dockerhubaccount", url: "" ]) {
+                    docker.withDockerRegistry('' , registryCredential) {
                         dockerImage.push()
                     }
                 }
