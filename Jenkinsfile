@@ -41,9 +41,7 @@ pipeline{
                 
                 // Push new image to DockerHub
                 script {
-                    docker.withRegistry( '', registryCredential ) {
-                        dockerImage.push()
-                    }
+                    dockerImage.push()
                 }
                 // this is where you would implement some way to deployment to K8S cluster...
             }
