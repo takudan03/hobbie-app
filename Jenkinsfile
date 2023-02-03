@@ -2,7 +2,7 @@ pipeline{
 
     environment {
         registry = "takudan03/hobbie-app"
-        registryCredential = "jenkins-user-for-dockerhub-artifact-repository"
+        registryCredential = credentials("jenkins-user-for-dockerhub-artifact-repository")
         dockerImage = ''
     }
     
@@ -40,10 +40,8 @@ pipeline{
                 
                 // Push new image to DockerHub
                 script {
-                    withCredentials([usernamePassword(credentialsId: "${registryCredential}", passwordVariable: 'dockerKey', usernameVariable: 'dockerUser')]) {
-                        sh "docker login --username $dockerUser --password $dockerKey"
-                        sh "docker push ${registry}"
-                    }
+                    sh "docker login --username $registryCredential_USR --password $registryCredential_USR"
+                    sh "docker push ${registry}"
                 }
                 // this is where you would implement some way to deployment to K8S cluster...
             }
