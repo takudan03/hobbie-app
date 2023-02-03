@@ -2,7 +2,7 @@ pipeline{
 
     environment {
         registry = "takudan03/hobbie-app"
-        registryCredential = 'takudan03'
+        registryCredential = 'jenkins-user-for-dockerhub-artifact-repository'
         dockerImage = ''
     }
     
