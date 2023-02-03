@@ -41,8 +41,9 @@ pipeline{
                 
                 // Push new image to DockerHub
                 script {
-                    docker.withDockerRegistry([credentialsID: "jenkins-user-for-dockerhub-artifact-repository", url: "" ]) {
-                        dockerImage.push()
+                    withCredentials([usernamePassword(credentialsId: "${registryCredential}", passwordVariable: 'dockerKey', usernameVariable: 'dockerUser')]) {
+                        sh "docker login --username $dockerUser --password $dockerKey"
+                        sh "docker push ${registry}"
                     }
                 }
                 // this is where you would implement some way to deployment to K8S cluster...
@@ -53,6 +54,7 @@ pipeline{
     post {
         always {
             archiveArtifacts artifacts: 'test_results.log', fingerprint: true
+            sh "docker logout"
             echo "The pipeline has completed"
         }
     }
